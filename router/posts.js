@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 })
 
 router.get("/:id", (req, res) => {
-    res.send(`Restituisco post con id: ${req.params.id}`);
+    res.json(posts.find((post) => post.id == req.params.id));
 })
 
 router.post("/", (req, res) => {
