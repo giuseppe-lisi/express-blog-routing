@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const posts = require("../data/postsData.js");
 
-router.get("/ ", (req, res) => {
-    res.send("Lista dei Post")
+router.get("/", (req, res) => {
+    res.json(posts);
 })
 
 router.get("/:id", (req, res) => {
