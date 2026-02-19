@@ -12,23 +12,23 @@ app.get("/posts", (req, res) => {
 })
 
 app.get("/posts/:id", (req, res) => {
-    console.log(`Restituisco post con id: ${req.params.id}`);
+    res.send(`Restituisco post con id: ${req.params.id}`);
 })
 
 app.post("/posts", (req, res) => {
-    console.log("Aggiungo post");
+    res.send("Aggiungo post");
 })
 
 app.put("/posts/:id", (req, res) => {
-    console.log(`Modifico interamento l'elemento con id: ${req.params.id}`);
+    res.send(`Modifico interamento l'elemento con id: ${req.params.id}`);
 })
 
 app.patch("/posts/:id", (req, res) => {
-    console.log(`Aggiorno l'elemento con id: ${req.params.id}`);
+    res.send(`Aggiorno l'elemento con id: ${req.params.id}`);
 })
 
 app.delete("/posts/:id", (req, res) => {
-    console.log(`Cancello l'elemento con id: ${req.params.id}`);
+    res.send(`Cancello l'elemento con id: ${req.params.id}`);
 })
 
 app.listen(port, () => {
