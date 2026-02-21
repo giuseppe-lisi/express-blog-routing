@@ -1,29 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const posts = require("../data/postsData.js");
+const postsController = require("../controllers/postsController.js");
 
-router.get("/", (req, res) => {
-    res.json(posts);
-})
+router.get("/", postsController.index);
 
-router.get("/:id", (req, res) => {
-    res.json(posts.find((post) => post.id == req.params.id));
-})
+router.get("/:id", postsController.show);
 
-router.post("/", (req, res) => {
-    res.send("Aggiungo post");
-})
+router.post("/", postsController.store);
 
-router.put("/:id", (req, res) => {
-    res.send(`Modifico interamento l'elemento con id: ${req.params.id}`);
-})
+router.put("/:id", postsController.update);
 
-router.patch("/:id", (req, res) => {
-    res.send(`Aggiorno l'elemento con id: ${req.params.id}`);
-})
+router.patch("/:id", postsController.modify);
 
-router.delete("/:id", (req, res) => {
-    res.send(`Cancello l'elemento con id: ${req.params.id}`);
-})
+router.delete("/:id", postsController.destroy);
 
 module.exports = router;
