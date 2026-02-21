@@ -7,8 +7,7 @@ app.get("/", (req, res) => {
     res.send("<h1>Benvenuto nel Server del Blog</h1>");
 });
 
-// screma l'index.js lasciando la gestione delle richieste CRUD 
-// al router di express contenuto in un file esterno posts.js
+// amplio le funzionalità di express usando il router che gestisce le rotte
 app.use("/posts", postsRouter);
 
 app.listen(port, () => {

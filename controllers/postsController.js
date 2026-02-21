@@ -1,5 +1,8 @@
 const posts = require("../data/postsData.js");
 
+// le funzioni delle operazioni CRUD sono gestite dal controller per scremare il router e l'index.js
+// tutto è centralizzato meglio e il codice risulta più pulito
+
 function index(req, res) { 
     // capitalizza la prima lettera del tag
     const tag = req.query.tags;
