@@ -21,7 +21,8 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    res.send(`Cancello l'elemento con id: ${req.params.id}`);
+    const postToDelete = posts.find((post) => post.id == req.params.id);
+    res.send(`deleted post with id: ${postToDelete.id}`);
 }
 
 module.exports = { index, show, store, update, modify, destroy };
