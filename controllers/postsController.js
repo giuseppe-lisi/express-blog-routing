@@ -21,13 +21,18 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    if (isNaN(req.params.id)) {
-        res.status(400).send(`Error: bad id "${req.params.id}"`)
+    const postToDelete = posts.find((post) => post.id == req.params.id)
+    // se viene passato un id che non è un num o non esiste un post con
+    // l'id specificato restituisce un errore
+    if (isNaN(req.params.id) || !postToDelete) {
+        res.status(400).send(`Error: post doesnt exist or bad id "${req.params.id}"`)
+    // se il post esiste lo elimina dall'array dei post e restituire status ok
+    } else {
+        const indexOfPost = posts.indexOf(postToDelete);
+        posts.splice(indexOfPost, 1);
+        res.status(204).send();
+        console.log(posts);
     }
-    // const indexOfPost = posts.indexOf(posts.find((post) => post.id == req.params.id));
-    // posts.splice(indexOfPost, 1);
-    // res.status(204).send();
-    // console.log(posts);
 }
 
 module.exports = { index, show, store, update, modify, destroy };
