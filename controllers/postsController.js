@@ -21,8 +21,8 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    const postToDelete = posts.find((post) => post.id == req.params.id);
-    res.send(`deleted post with id: ${postToDelete.id}`);
+    const postToDelete = posts.indexOf(posts.find((post) => post.id == req.params.id));
+    res.send(`deleted post with id: ${postToDelete}`);
 }
 
 module.exports = { index, show, store, update, modify, destroy };
