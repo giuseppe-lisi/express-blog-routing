@@ -5,13 +5,9 @@ function index(req, res) {
     const tag = req.query.tags;
     const capTag = tag.charAt(0).toUpperCase() + tag.slice(1);
     // cicla su tutti i post presenti e per ogni post
-    // cicla sui tag presenti nel post: se il tag presente nella
-    // query è tra i tag del singolo post, il post viene salvato
-    // nell'array dei post da mostrare
-    const postsToShow = posts.filter((post) =>
-        post.tags.find((tag) => tag == capTag),
-    );
-
+    // determina se il tag è presente nell'array dei tag
+    const postsToShow = posts.filter(post => post.tags.includes(capTag))
+    
     res.json(postsToShow);
 }
 
