@@ -1,7 +1,18 @@
 const posts = require("../data/postsData.js");
 
-function index(req, res) {
-    res.json(posts);
+function index(req, res) { 
+    // capitalizza la prima lettera del tag
+    const tag = req.query.tags;
+    const capTag = tag.charAt(0).toUpperCase() + tag.slice(1);
+    // cicla su tutti i post presenti e per ogni post
+    // cicla sui tag presenti nel post: se il tag presente nella
+    // query è tra i tag del singolo post, il post viene salvato
+    // nell'array dei post da mostrare
+    const postsToShow = posts.filter((post) =>
+        post.tags.find((tag) => tag == capTag),
+    );
+
+    res.json(postsToShow);
 }
 
 function show(req, res) {
