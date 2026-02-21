@@ -32,7 +32,7 @@ function destroy(req, res) {
     // se viene passato un id che non è un num o non esiste un post con
     // l'id specificato restituisce un errore
     if (isNaN(req.params.id) || !postToDelete) {
-        res.status(400).send(
+        res.status(404).send(
             `Error: post doesnt exist or bad id "${req.params.id}"`,
         );
         // se il post esiste lo elimina dall'array dei post e restituire status ok
