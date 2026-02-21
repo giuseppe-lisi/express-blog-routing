@@ -5,7 +5,14 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    res.json(posts.find((post) => post.id == req.params.id));
+    const post = posts.find((post) => post.id == req.params.id);
+    if (isNaN(req.params.id) || !post) {
+        res.status(404).send(
+            `Id "${req.params.id}" is not valid, no such post exists`,
+        );
+    } else {
+        res.json(posts.find((post) => post.id == req.params.id));
+    }
 }
 
 function store(req, res) {
@@ -21,12 +28,14 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    const postToDelete = posts.find((post) => post.id == req.params.id)
+    const postToDelete = posts.find((post) => post.id == req.params.id);
     // se viene passato un id che non è un num o non esiste un post con
     // l'id specificato restituisce un errore
     if (isNaN(req.params.id) || !postToDelete) {
-        res.status(400).send(`Error: post doesnt exist or bad id "${req.params.id}"`)
-    // se il post esiste lo elimina dall'array dei post e restituire status ok
+        res.status(400).send(
+            `Error: post doesnt exist or bad id "${req.params.id}"`,
+        );
+        // se il post esiste lo elimina dall'array dei post e restituire status ok
     } else {
         const indexOfPost = posts.indexOf(postToDelete);
         posts.splice(indexOfPost, 1);
