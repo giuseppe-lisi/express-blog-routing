@@ -21,8 +21,13 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    const postToDelete = posts.indexOf(posts.find((post) => post.id == req.params.id));
-    res.send(`deleted post with id: ${postToDelete}`);
+    if (isNaN(req.params.id)) {
+        res.status(400).send(`Error: bad id "${req.params.id}"`)
+    }
+    // const indexOfPost = posts.indexOf(posts.find((post) => post.id == req.params.id));
+    // posts.splice(indexOfPost, 1);
+    // res.status(204).send();
+    // console.log(posts);
 }
 
 module.exports = { index, show, store, update, modify, destroy };
