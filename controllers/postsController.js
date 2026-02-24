@@ -4,13 +4,13 @@ const posts = require("../data/postsData.js");
 // tutto è centralizzato meglio e il codice risulta più pulito
 
 function index(req, res) { 
-    // capitalizza la prima lettera del tag
     const tag = req.query.tags;
-    const capTag = tag.charAt(0).toUpperCase() + tag.slice(1);
-    // cicla su tutti i post presenti e per ogni post
-    // determina se il tag è presente nell'array dei tag
-    const postsToShow = posts.filter(post => post.tags.includes(capTag))
-    
+    // copia le tag di ogni post in un array in lower case
+    // controlla che l'array di tag contenga il tag della query e se si restituisce il post
+    const postsToShow = posts.filter((post) => {
+        const postTags = post.tags.map((postTag) => postTag.charAt(0).toLowerCase() + postTag.slice(1));
+        return postTags.includes(tag)
+    })
     res.json(postsToShow);
 }
 
