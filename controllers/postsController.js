@@ -6,22 +6,23 @@ const posts = require("../data/postsData.js");
 function index(req, res) {
     const search = req.query.search;
     const tag = req.query.tags;
-    // se presente il query param "tags" copia le tag di ogni post in un array in lower case
-    // controlla che l'array di tag contenga il tag della query e se si restituisce il post
+    // filtra contemporaneamente per tag e ricerca del titolo
+    // restituisce tutti i post nel caso in cui non venga applicato nessun filtro
     const postsToShow = posts.filter((post) => {
         // filtro per tag
         if (tag) {
             const postTags = post.tags.map((postTag) => postTag.toLowerCase());
+            // se il tag non è presente stoppa subito il filtro e il post non viene restituito
             if (!postTags.includes(tag)) return false;
         }
         // filtro per titolo
         if (search) {
+            // se la ricerca non corriposnde con il titolo di nessun post allo questo non viene restituito
             if (!post.title.toLowerCase().includes(search)) return false;
         }
-
+        // restituisce il post se ha passato entrambi i check di filtro
         return true;
     });
-    // postTag.charAt(0).toLowerCase() + postTag.slice(1)
 
     res.json(postsToShow);
 }
