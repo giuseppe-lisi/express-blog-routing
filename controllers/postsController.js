@@ -3,14 +3,26 @@ const posts = require("../data/postsData.js");
 // le funzioni delle operazioni CRUD sono gestite dal controller per scremare il router e l'index.js
 // tutto è centralizzato meglio e il codice risulta più pulito
 
-function index(req, res) { 
+function index(req, res) {
+    const search = req.query.search;
     const tag = req.query.tags;
-    // copia le tag di ogni post in un array in lower case
+    // se presente il query param "tags" copia le tag di ogni post in un array in lower case
     // controlla che l'array di tag contenga il tag della query e se si restituisce il post
     const postsToShow = posts.filter((post) => {
-        const postTags = post.tags.map((postTag) => postTag.charAt(0).toLowerCase() + postTag.slice(1));
-        return postTags.includes(tag)
-    })
+        // filtro per tag
+        if (tag) {
+            const postTags = post.tags.map((postTag) => postTag.toLowerCase());
+            if (!postTags.includes(tag)) return false;
+        }
+        // filtro per titolo
+        if (search) {
+            if (!post.title.toLowerCase().includes(search)) return false;
+        }
+
+        return true;
+    });
+    // postTag.charAt(0).toLowerCase() + postTag.slice(1)
+
     res.json(postsToShow);
 }
 
