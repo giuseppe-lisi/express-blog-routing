@@ -39,7 +39,7 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    res.send("Aggiungo post");
+    res.status(201).send("Post aggiunto");
 }
 
 function update(req, res) {
