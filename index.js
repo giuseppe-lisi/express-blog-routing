@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const postsRouter = require("./router/posts.js")
+const postsRouter = require("./router/postsRouter.js")
 
 app.get("/", (req, res) => {
     res.send("<h1>Benvenuto nel Server del Blog</h1>");
