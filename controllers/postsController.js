@@ -30,8 +30,13 @@ function index(req, res) {
 function show(req, res) {
     const post = posts.find((post) => post.id == req.params.id);
     if (isNaN(req.params.id) || !post) {
-        res.status(404).json(
-            `Id "${req.params.id}" is not valid, no such post exists`,
+        res.status(404)
+        
+        return res.json(
+            {
+                error: "Not Found",
+                message: `Id "${req.params.id}" is not valid, no such post exists`,
+            }
         );
     } else {
         res.json(posts.find((post) => post.id == req.params.id));
@@ -39,7 +44,12 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    res.status(201).send("Post aggiunto");
+    console.log("hai creato un nuovo post");
+    const newPost = res.body;
+    console.log(newPost);
+    
+    
+    res.json("hai creato un nuovo post")
 }
 
 function update(req, res) {

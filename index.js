@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const postsRouter = require("./router/postsRouter.js")
-const bodyParser = require('body-parser')
+const postsRouter = require("./router/postsRouter.js");
+
 
 app.get("/", (req, res) => {
     res.send("<h1>Benvenuto nel Server del Blog</h1>");
@@ -11,7 +11,6 @@ app.get("/", (req, res) => {
 // amplio le funzionalità di express usando il router che gestisce le rotte
 // e il body parser per poter leggere i post in arrivo
 app.use("/posts", postsRouter);
-app.use(bodyParser.json());
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
