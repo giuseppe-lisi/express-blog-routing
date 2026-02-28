@@ -78,7 +78,7 @@ function destroy(req, res) {
     } else {
         const indexOfPost = posts.indexOf(postToDelete);
         posts.splice(indexOfPost, 1);
-        res.status(204).send();
+        res.sendStatus(204);
     }
 }
 
