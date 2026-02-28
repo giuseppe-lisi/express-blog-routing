@@ -64,7 +64,23 @@ function store(req, res) {
 }
 
 function update(req, res) {
-    res.send(`Modifico interamento l'elemento con id: ${req.params.id}`);
+    const id = parseInt(req.params.id);
+    const post = posts.find(post => post.id === id);
+
+    if(!post) {
+        res.status(404);
+        return res.json({
+            error: "Not Found",
+            message: "No post with such id exists"
+        })
+    }
+
+    post.title = req.body.title;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+
+    res.send(post);
 }
 
 function modify(req, res) {
