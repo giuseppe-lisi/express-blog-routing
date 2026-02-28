@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
 // amplio le funzionalità di express usando il router che gestisce le rotte
 // e il body parser per poter leggere i post in arrivo
 app.use("/posts", postsRouter);
+app.use(express.json());
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
