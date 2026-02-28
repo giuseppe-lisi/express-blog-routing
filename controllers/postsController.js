@@ -44,12 +44,23 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    console.log("hai creato un nuovo post");
-    const newPost = res.body;
-    console.log(newPost);
+    // crea id in base all'id dell'ultimo elemento dell'array di post
+    const newId = posts[posts.length - 1].id + 1;  
+      
+    // crea il nuovo post con i dati ricevuti dalla req
+    const newPost = {
+        id: newId,
+        title: req.body.name,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    };
     
+    // pusha il nuovo post nell'array di post
+    posts.push(newPost);
     
-    res.json("hai creato un nuovo post")
+    res.status(201);
+    res.json(newPost);
 }
 
 function update(req, res) {
