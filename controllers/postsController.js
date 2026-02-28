@@ -65,15 +65,20 @@ function destroy(req, res) {
     // se viene passato un id che non è un num o non esiste un post con
     // l'id specificato restituisce un errore
     if (isNaN(req.params.id) || !postToDelete) {
-        res.status(404).json(
-            `Error: post doesnt exist or bad id "${req.params.id}"`,
+        res.status(404)
+        
+        return res.json(
+            {
+                status: 404,
+                error: "Not found",
+                message: `Error: post doesnt exist or bad id "${req.params.id}"`,
+            }
         );
         // se il post esiste lo elimina dall'array dei post e restituire status ok
     } else {
         const indexOfPost = posts.indexOf(postToDelete);
         posts.splice(indexOfPost, 1);
         res.status(204).send();
-        console.log(posts);
     }
 }
 
