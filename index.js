@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const postsRouter = require("./router/postsRouter.js");
 const notFound = require("./middlewares/notFound.js");
+const errHandler = require("./middlewares/errHandler.js");
 
 app.get("/", (req, res) => {
     res.send("<h1>Benvenuto nel Server del Blog</h1>");
@@ -15,6 +16,8 @@ app.use("/posts", postsRouter);
 
 // not found handler
 app.use(notFound);
+// global error handler
+app.use(errHandler);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
