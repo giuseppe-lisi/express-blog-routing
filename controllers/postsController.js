@@ -1,5 +1,14 @@
 const posts = require("../data/postsData.js");
 
+const postsController = {
+    index,
+    show,
+    store,
+    update,
+    modify,
+    destroy
+}
+
 // le funzioni delle operazioni CRUD sono gestite dal controller per scremare il router e l'index.js
 // tutto è centralizzato meglio e il codice risulta più pulito
 
@@ -118,4 +127,4 @@ function destroy(req, res) {
     }
 }
 
-module.exports = { index, show, store, update, modify, destroy };
+module.exports = postsController;
