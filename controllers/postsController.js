@@ -66,6 +66,12 @@ function store(req, res) {
 function update(req, res) {
     const id = parseInt(req.params.id);
     const post = posts.find(post => post.id === id);
+    console.log(post);
+    
+    const title = req.body.title;
+    const content = req.body.content;
+    const image = req.body.image;
+    const tags = req.body.tags;
 
     if(!post) {
         res.status(404);
@@ -75,12 +81,10 @@ function update(req, res) {
         })
     }
 
-    post.title = req.body.title;
-    post.content = req.body.content;
-    post.image = req.body.image;
-    post.tags = req.body.tags;
+    posts[id-1] = {...posts[id-1], title, content, image, tags};
 
-    res.send(post);
+
+    res.send(posts[id-1]);
 }
 
 function modify(req, res) {
