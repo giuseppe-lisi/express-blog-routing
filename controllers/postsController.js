@@ -54,7 +54,7 @@ function store(req, res) {
       
     // crea il nuovo post con i dati ricevuti dalla req
     const newPost = {
-        id: newId,
+        id: newId + 1,
         title: req.body.name,
         content: req.body.content,
         image: req.body.image,
